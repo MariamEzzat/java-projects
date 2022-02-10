@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Chat Room</title>
+
+	<!-- Reset styles -->
+	<link href="./css/reset.css" rel="stylesheet" type="text/css" />
+
+	<!-- Load jQuery and jQWidgets frameworks -->
+	<link href="./lib/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+	<link href="./lib/jqwidgets/styles/jqx.summer.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="./lib/jquery-1.7.2.min.js"></script>
+	
+	<script type="text/javascript" src="./lib/jqwidgets/jqxcore.js"></script>
+
+	<!-- Set custom styles -->
+	<link href="./css/main.css" rel="stylesheet" type="text/css" />
+
+	<!-- Load jQWidgets' required widgets -->
+	<script type="text/javascript" src="./lib/jqwidgets/jqxbuttons.js"></script>
+	<script type="text/javascript" src="./lib/jqwidgets/jqxscrollbar.js"></script>
+	<script type="text/javascript" src="./lib/jqwidgets/jqxlistbox.js"></script>
+	<script type="text/javascript" src="./lib/jqwidgets/jqxexpander.js"></script>
+	<script type="text/javascript" src="./lib/jqwidgets/jqxnavigationbar.js"></script>
+	<script type="text/javascript" src="./lib/jqwidgets/jqxpanel.js"></script>
+
+	<!-- Load SFS2X JS API -->
+	<script type="text/javascript" src="./lib/sfs2x-api-1.7.11.js"></script>
+
+	<!-- Load main script -->
+	<script type="text/javascript" src="./JS/main.js"></script>
+
+	<!-- Initialize user interface -->
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			var theme = "summer";
+
+			// Init main widgets
+			$("#connectBt").jqxButton({width:100, theme:theme});
+			$("#loginBt").jqxButton({width:100, theme:theme, disabled:true});
+
+		
+			$("#chatAreaPn").jqxPanel({width:578, height:400, theme:theme, disabled:true, autoUpdate:true});
+			$("#sendMsgBt").jqxButton({width:100, theme:theme, disabled:true});
+		
+	
+
+			// Add event listeners
+		const element = document.getElementById("connectBt");
+         element.addEventListener("click", onConnectBtClick);
+
+
+        
+			
+			$("#loginBt").click(onLoginBtClick);
+			$("#sendMsgBt").click(SendPublicMessage);
+		
+	
+	    });
+	</script>
+
+</head>
+
+<body onLoad="init()">
+	<div id="header">
+	
+		<strong>Chat Room</strong>
+	</div>
+	<div id="controls" class="group">
+		<input type="button" id="connectBt" value="Connect"/>
+		<input type="text" id="usernameIn" class="textInput" disabled="true" placeholder="Your username"/>
+		<input type="button" id="loginBt" value="Login"/>
+
+
+	</div>
+	<div id="main" class="group">
+		<div id="chatbox">
+			<p id="chatTopicLb" class="chatTopic"></p>
+			<p class="sectionTitle">Chat</p>
+			<div id="chatAreaPn"></div>
+			<div class="chatControls">
+				<div>
+					<input type="text" id="publicMsgIn" class="textInput" disabled="true" placeholder="Type your message &amp; hit send" style="width: 463px;"/>
+					<input type="button" id="sendMsgBt" value="Send"/>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
